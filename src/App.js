@@ -137,6 +137,7 @@ const Home = () => {
                     className="form__field"
                     placeholder="name"
                     name="playerName"
+                    autocomplete="off"
                     required
                   />
                   <label htmlFor="playerName" className="form__label">
