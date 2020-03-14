@@ -1,0 +1,359 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,600,800');
+@import url('https://fonts.googleapis.com/css?family=Share+Tech+Mono&display=swap');
+
+$primary: #074b2d;
+$secondary: #30b55a;
+$white: #fff;
+$gray: #f2f2f2;
+$error: #ff3738;
+
+.flag {
+  height: auto;
+  width: 1.4em;
+}
+
+/** Card **/
+.card {
+  color: $gray;
+  font-family: monospace;
+  font-size:1.4em;
+  border: 2px solid $secondary;
+  position: relative;
+  margin: 10px;
+  padding: 10px;
+  max-width:180px;
+}
+
+
+%font-size {
+  @media screen and (min-width: 40em) {
+    font-size: 18px;
+  }
+
+  @media screen and (min-width: 40em) {
+    font-size: 20px;
+  }
+}
+
+label {
+  font-family: 'Raleway', sans-serif;
+}
+
+.logo {
+  height:auto;
+  width: 110px;
+  position:absolute;
+  left:10px;
+  top:0;
+}
+
+.cover-bg {
+  z-index: -1;
+  position: absolute;
+  background-color: black;
+  height: 100%;
+  width: 100%;
+}
+
+#container {
+  display: flex; /* establish flex container */
+  flex-direction: column; /* make main-axis vertical */
+  justify-content: center; /* align items vertically, in this case */
+  align-items: center; /* align items horizontally, in this case */
+  height: 100vh; /* for demo purposes */
+}
+
+.goalkeeper {
+  background-color: #0009D9;
+}
+
+.midfielder {
+  background-color: #C95600;
+}
+
+.defender {
+  background-color: #009928;
+}
+
+.attacker {
+  background-color: #ac0006;
+}
+
+.playerName {
+  margin-bottom: 0;
+}
+
+.border-goalkeeper {
+  border: 2px solid #0009d9;
+}
+
+.border-midfielder {
+  border: 2px solid #C95600;
+}
+
+.border-defender {
+  border: 2px solid #009928;
+}
+
+.border-attacker {
+  border: 2px solid #ac0006;
+}
+
+.position p {
+  display: inline;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+.result-title {
+  padding-bottom: 20px;
+  padding-left: 10px;
+  margin:0;
+  color: $white;
+  width: 100%;
+  font: {
+    size: 3rem;
+    weight: 400;
+    family: 'Share Tech Mono', monospace;
+  }
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+#result {
+  background-color: black;
+}
+
+#container-result > div {
+  flex:1 1 auto;
+}
+
+#container-result {
+  min-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.box {
+  margin: 0;
+  width: 550px;
+  text-align: center;
+}
+
+.title {
+  margin: 0;
+  width: auto;
+  text-align: center;
+}
+
+.home-title {
+  color: $white;
+  width: 21ch;
+  font: {
+    size: 3.5rem;
+    weight: 400;
+    family: 'Share Tech Mono', monospace;
+  }
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 4px solid rgba(4, 30, 23, 1);
+  animation: cursor 1s step-start infinite, text 3s steps(21);
+}
+
+@keyframes cursor {
+  0%, 100% {
+    border-color: $white;
+  }
+  50% {
+    border-color: transparent;
+  }
+}
+
+@keyframes text {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 21ch;
+  }
+}
+
+.form__group {
+  position: relative;
+  padding: 15px 0 0;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.form__field {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid $white;
+  outline: 0;
+  font-size: 1.3rem;
+  color: $white;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+
+  &::placeholder {
+    color: transparent;
+  }
+
+  &:placeholder-shown ~ .form__label {
+    font-weight: 400;
+    font-size: 1.3rem;
+    top: 20px;
+  }
+}
+
+.form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: $white;
+}
+
+.form__field:valid, .form__field:focus {
+  ~ .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: $secondary;
+    font-weight: 600;
+  }
+  padding-bottom: 6px;
+  font-weight: 700;
+  border-width: 3px;
+  border-color: $secondary;
+}
+
+/* reset input */
+.form__field {
+  &:required, &:invalid {
+    box-shadow: none;
+  }
+}
+
+/* Button */
+@mixin btn-border-drawing($font:$white, $color:$white, $hover:$secondary, $width: 2px, $vertical: top, $horizontal: left, $duration: 0.25s) {
+  box-shadow: inset 0 0 0 $width $color;
+  color: $font;
+  transition: color $duration $duration/3;
+  position: relative;
+  font-weight: 800;
+  font-size: 0.8em;
+  &::before,
+  &::after {
+    border: 0 solid transparent;
+    box-sizing: border-box;
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    width: 0;
+    height: 0;
+
+    #{$vertical}: 0;
+    #{$horizontal}: 0;
+  }
+
+  &::before {
+    $h-side: if($horizontal == 'left', 'right', 'left');
+
+    border-#{$vertical}-width: $width;
+    border-#{$h-side}-width: $width;
+  }
+
+  &::after {
+    $v-side: if($vertical == 'top', 'bottom', 'top');
+
+    border-#{$v-side}-width: $width;
+    border-#{$horizontal}-width: $width;
+  }
+
+  &:hover {
+    color: $color;
+
+    &::before,
+    &::after {
+      border-color: $hover;
+      transition: border-color 0s, width $duration, height $duration;
+      width: 100%;
+      height: 100%;
+    }
+
+    &::before {
+      transition-delay: 0s, 0s, $duration;
+    }
+
+    &::after {
+      transition-delay: 0s, $duration, 0s;
+    }
+  }
+}
+
+.draw-border:enabled {
+  @include btn-border-drawing($white, $white, $secondary, 2px, bottom, left);
+}
+
+.draw-border:disabled {
+  @include btn-border-drawing($white, red, #ff3738, 2px, bottom, left);
+}
+
+.btn {
+  float:right;
+  margin-top: 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  line-height: 1.5;
+  text-transform: uppercase;
+  padding: 1em 2em;
+  letter-spacing: 0.05rem;
+
+  &:focus {
+    outline: 2px dotted $white;
+  }
+}
+
+.dot-loader {
+  align-items: center;
+  display: flex;
+  height: 1.5em;
+  justify-content: space-between;
+  width: 2.5em;
+}
+
+.dot-loader .dot {
+  animation: bounce 0.5s infinite alternate;
+  animation-fill-mode: both;
+  animation-timing-function: ease;
+  background-color: blue;
+  border-radius: 50%;
+  height: 0.5em;
+  width: 0.5em;
+}
+
+.dot-loader .dot:nth-of-type(2) {
+  animation-delay: 0.1s;
+  background-color: white;
+}
+
+.dot-loader .dot:nth-of-type(3) {
+  animation-delay: 0.2s;
+  background-color: red;
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(0.5em);
+  }
+  to {
+    transform: translateY(-0.5em);
+  }
+}
